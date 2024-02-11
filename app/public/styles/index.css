@@ -1,0 +1,250 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #212121;
+    height: 100vh;
+}
+
+.menu_icon{
+    display:none;
+}
+
+label{
+    color: #f5f5f5;
+    display: block;
+    width: 80%;
+}
+
+input{
+ margin-bottom: 1em;
+ padding: 1em;
+ width: 80%;
+ border: 2px solid #0D47A1;
+ background-color: transparent;
+ outline: none;
+ border-radius: 4px;
+ color: #ffffff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.top_bar{
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    background-color: #424242;
+    height: 45px;
+    opacity: 99%;
+    position: fixed;
+    width: 100vw;
+    z-index: 1000;
+}
+
+.top_bar img{
+  margin-left: 12em;
+  margin-top: 2.5px;
+}
+
+.top_bar ul li{
+    display: inline;
+    margin-right: 5em;
+    font-family: sans-serif;
+}
+
+
+.top_bar ul li a{
+    text-decoration: none;
+    color: #f5f5f5;
+
+}
+
+.profile{
+    margin-top: -13px;
+    margin-right: 5px;
+}
+
+.profile img{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    padding: 1em;
+}
+
+.profile img:hover{
+    cursor: pointer;
+}
+
+.footer {
+    background-color: #424242;
+    padding: 20px;
+    text-align: center;
+    color: #e3e3f0;
+    opacity: 90%;
+    align-items: bottom;
+}
+
+.socials{
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+  }
+  
+  .socials li{
+      list-style: none;
+      padding-right: 1em;
+  }
+  
+  .socials img{
+      height: 25px;
+      height: 25px;
+  }
+
+.blog-area{
+    height: 100vh;
+}
+
+.blogtitle{
+    border-radius: 5px;
+    height: 50px;
+    margin-left: 3px;
+    margin-right: 5px;
+}
+
+.blog-body{
+    border-radius: 5px;
+    height: 550px;
+    background-color: rgb(34, 36, 51);
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.form-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form{
+    padding: 3em;
+    background-color: #616161;
+    border-radius: 10px;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+
+.form label{
+    font-weight: bold;
+    color: #000000;
+    margin-left: -100px;
+}
+
+.form input{
+    margin-top: .8em;
+    font-weight: lighter;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #090d3a;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 16px;background-color: #000000;
+}
+
+.form textarea{
+    margin-top: .8em;
+    font-weight: lighter;
+    color: #000000;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.submit{
+    border-radius: 15px;
+    padding-left: .8em;
+    padding-right: .8em;
+    color: #e3e3f0;
+    font-size: larger;
+    background-color: #213363;
+}
+
+.submit:hover{
+    cursor: pointer;
+}
+
+.user-type{
+    margin: 50px;
+    padding: 0;
+    background-color: rgb(34, 36, 51);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fafafa;
+    border-radius: 5px;
+    margin-left:240px;
+    margin-right: 240px;
+}
+
+.user-type button{
+    margin: 10px;
+}
+
+/* CSS */
+.button-9 {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #405cf5;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+  font-size: 100%;
+  height: 44px;
+  line-height: 1.15;
+  margin: 12px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all .2s,box-shadow .08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 50%;
+}
+
+.button-9:disabled {
+  cursor: default;
+}
+
+.button-9:focus {
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+}
+
+.text-explain{
+    background-color: #424242;
+    margin: 9px;
+    border-radius: 8px;
+    padding: 5px;
+    color: #fff;
+    font-family: sans-serif;
+}
