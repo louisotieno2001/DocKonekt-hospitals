@@ -3,6 +3,7 @@ body{
     padding: 0;
     background-color: #212121;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 .menu_icon{
@@ -40,7 +41,7 @@ form {
     background-color: #424242;
     height: 45px;
     opacity: 99%;
-    position: fixed;
+    position: sticky;
     width: 100vw;
     z-index: 1000;
 }
@@ -247,4 +248,67 @@ form {
     padding: 5px;
     color: #fff;
     font-family: sans-serif;
+}
+
+.verification{
+    margin: 50px;
+    padding: 0;
+    background-color: rgb(34, 36, 51);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fafafa;
+    border-radius: 5px;
+    margin-left:240px;
+    margin-right: 240px;
+}
+
+.verification-form label{
+    width: 280px;
+}
+
+.verification-form input{
+    width: 250px;
+}
+
+.booking{
+    border-radius: 5px;
+    /* height: 100vh; */
+    background-color: rgb(34, 36, 51);
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    width: 98.5%;
+    font-family: sans-serif;
+}
+
+.schedule-container{
+    border-radius: 5px;
+    /* height: 100vh; */
+    background-color: rgb(34, 36, 51);
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    width: 98.5%;
+}
+
+.bottom_bar{
+    background-color: #424242;
+    padding: 20px;
+    text-align: center;
+    color: #e3e3f0;
+    opacity: 90%;
+    align-items: bottom;
+}
+
+form select{
+   background-color: #424242;
+   color: #f5f5f5;
+   width: 400px;
+   margin: 2px;
+   padding: 1em;
+   border-radius: 5px;
+   font-size: larger;
 }

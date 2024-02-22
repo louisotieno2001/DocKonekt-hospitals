@@ -3,17 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms & Conditions</title>
+    <title>Schedules</title>
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/small-devices.css">
     <link rel="icon" href="./res/Picture4.png" type="image/x-icon">
+    <style>
+       /* Add your CSS styling here */
+
+        body {
+            overflow-x: hidden;
+        }
+        
+       .card {
+           border: 2px solid #424242;
+           padding: 10px;
+           border-radius: 5px;
+           color: aliceblue;
+           margin: 15px;
+           width: 98%; /* Make the card full width */
+           background-color: #212121; /* White background */
+           box-sizing: border-box; /* Include padding and border in the element's total width and height */
+       }
+       
+       button {
+           background-color: #4CAF50;
+           color: white;
+           padding: 10px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+
+    </style>
 </head>
 <body>
     <div class="top_bar">
         <img src="./res/Picture4.png" alt="logo" class="logo">
         <ul class="menu-items" id="menu-items">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="health_blog.html">Health Blog</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="https://dockonekt.com/health_blog.html">Health Blog</a></li>
             <li><a href="get_in_touch.html">Contact Us</a></li>
         </ul>
         <img src="./res/menu_icon.png" alt="menu_icon" class="menu_icon" id="menu_icon">
@@ -21,13 +49,13 @@
             <img src="./res/photo.avif" alt="Profile image">
         </div>
     </div>
+    <div class="booking">
+        <div class="schedule-container" id="schedule-container">
+            <div class="blogtitle"></div>
+        </div>
+        <div class="blogtitle"></div>
+    </div>
     <div class="blogtitle"></div>
-    <div class="blog-body">
-        <script>
-            
-        </script>
-     </div>
-     <div class="blogtitle"></div>
     <div class="bottom_bar">
         <footer class="footer">
             <center><p>Follow us on social media below</p></center>
@@ -38,18 +66,57 @@
                 <li class="socials_wa"><a href="https://wa.me/254746852485" target="_blank"><img src="res/icon-whatsapp.webp" alt="Whatsapp"></a></li>
                 <li class="socials_tw"><a href="https://twitter.com/louiso_chieng1" target="_blank"><img src="res/x.jpg" alt="twitter"></a></li>
             </div>
-            <p>Copyright&copy;2024 Futurion Labs. All rights reserved</p>
+            <p>Copyright&copy;2024 Made at Futurion Labs (futurionlab.com). All rights reserved</p>
         </footer> 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const menuIcon = document.getElementById('menu_icon');
-                const menuItems = document.getElementById('menu-items');
-        
-                menuIcon.addEventListener('click', function () {
-                menuItems.classList.toggle('show');
-                });
-            });
-        </script>
     </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', async function () {
+              const menuIcon = document.getElementById('menu_icon');
+              const menuItems = document.getElementById('menu-items');
+              const scheduleContainer = document.getElementById('schedule-container');
+            
+              try {
+                const response = await fetch('/api/schedules');
+                const schedules = await response.json();
+                console.log(response);
+            
+                if (response.ok) {
+                  schedules.forEach(schedule => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+            
+                    card.innerHTML = `
+                      <h2>${schedule.doctor_name}</h2>
+                      <p>Speciality: ${schedule.speciality}</p>
+                      <p>Time Available: ${schedule.time_available}</p>
+                      <p>General Price: ${schedule.general_price}</p>
+                    `;
+            
+                    const button = document.createElement('button');
+                    button.textContent = `Contact ${schedule.doctor_name}`;
+                    button.addEventListener('click', function () {
+                    //   alert(`Book appointment for ${schedule.doctor_name}`);
+                    });
+
+                    button.style.display = 'none';
+            
+                    card.appendChild(button);
+                    scheduleContainer.appendChild(card);
+                  });
+            
+                //   window.confirm("All ok");
+                } else {
+                  window.confirm("All not ok");
+                }
+              } catch (error) {
+                console.error('Error fetching schedule data:', error);
+                window.confirm("Can't fetch schedule data from the server");
+              }
+            
+              menuIcon.addEventListener('click', function () {
+                menuItems.classList.toggle('show');
+              });
+            });     
+        </script>
 </body>
 </html>

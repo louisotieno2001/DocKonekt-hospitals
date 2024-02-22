@@ -4,6 +4,7 @@
         margin: 0;
         padding: 0;
         height: 100vh;
+        overflow-x: hidden;
     }
 
     .menu_icon{
@@ -16,7 +17,7 @@
         align-items: center;
         background-color: #424242;
         height: 50px;
-        position: fixed;
+        /* position: fixed; */
         width: 100vw;
         z-index: 1000;
     }
@@ -117,4 +118,58 @@
         padding: 5px;
         color: #fff;
     }
+
+    .verification{
+        margin: 20px;
+        margin-top: 70px;
+        padding: 0;
+        background-color: rgb(34, 36, 51);
+        height: 500px;
+        display: flex;
+        border-radius: 5px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fafafa;
+    }
+
+    .verification-form label{
+        width: 280px;
+    }
+
+    .verification-form input{
+        width: 250px;
+    }
+
+    .booking{
+        border-radius: 5px;
+        /* height: 100vh; */
+        background-color: rgb(34, 36, 51);
+        margin-top: 5px;
+        width: 94.5%;
+        font-family: sans-serif;
+    }
+    
+    .schedule-container{
+        border-radius: 5px;
+        /* height: 100vh; */
+        background-color: rgb(34, 36, 51);
+        margin-top: 5px;
+        width: 88.5%;
+    }
+    
+    .bottom_bar{
+        background-color: #424242;
+        padding: 20px;
+        text-align: center;
+        color: #e3e3f0;
+        opacity: 90%;
+        align-items: bottom;
+    }
+
+    .card{
+      margin-left: -20px;
+    }
+
+
 }

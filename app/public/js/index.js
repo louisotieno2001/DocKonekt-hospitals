@@ -8,7 +8,7 @@ patientBtn.addEventListener("click", async(e) => {
 
 doctorBtn.addEventListener("click", async(e) => {
     e.preventDefault();
-    window.location.href = "doctor-home.html";
+    window.location.href = "doctor-authentication.html";
 });
 
 
