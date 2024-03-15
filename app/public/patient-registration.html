@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/small-devices.css">
+    <link rel="icon" href="./res/Picture4.png" type="image/x-icon">
+     <!-- SEO Meta Tags -->
+     <meta name="description" content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+     <meta name="keywords" content="DocKonekt, hospital, health, search">
+     <meta name="author" content="Futurion Labs">
+ 
+     <!-- Open Graph Protocol for Social Media Sharing -->
+     <meta property="og:title" content="DocKonekt">
+     <meta property="og:description" content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+     <meta property="og:image" content="https://dockonekt.com/app/public/res/Picture4.png">
+     <meta property="og:url" content="https://dockonekt.com">
+     <meta property="og:type" content="website">
+ 
+     <!-- Twitter Card for Twitter Sharing -->
+     <meta name="twitter:card" content="summary_large_image">
+     <meta name="twitter:site" content="@louiso_chieng1">
+     <meta name="twitter:title" content="DocKonekt">
+     <meta name="twitter:description" content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+     <meta name="twitter:image" content="https://dockonekt.com/app/public/res/Picture4.png">
+</head>
+<body>
+    <div class="auth">
+    <div class="home">
+        <div class="left">
+            <div class="text">
+            <img src="./res/Picture4.png" alt="logo" class="logo">
+            <h1> Welcome to DocKonekt</h1>
+            <p>A service offered to make it easier for doctors and patients to connect for consultation purposes.
+            </p>
+            </div>
+        </div>
+        <div class="right" >
+            <form id="register-form" method="post">
+                <h1>Register</h1>
+                <label for="fname">Full name: </label>
+                <input type="text" name="fname" id="fname" required autocomplete="additional-name" placeholder="John Doe">
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email" required autocomplete="email" placeholder="johndoe@gmail.com">
+                <label for="phone">Phone: </label>
+                <input type="tel" name="phone" id="phone" required autocomplete="phone" placeholder="0711223344">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required autocomplete="current-password" placeholder="password"><br>
+                <button type="button" class="register" id="submit">Register</button>
+                <p class="alt_account">Already have an account? <a href="patient-login.html" id="login-link">Login</a></p>
+            </form>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                const submitBtn = document.getElementById('submit');
+              
+                submitBtn.addEventListener("click", async () => {
+                    const fullName = document.getElementById('fname').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    const password = document.getElementById('password').value;
+              
+                    // Validate input (you may want to implement more robust validation)
+                    if (!fullName || !email || !phone || !password) {
+                        alert("All fields are required.");
+                        return;
+                    }
+              
+                    // Create user data object
+                    const userData = {
+                        fullName,
+                        email,
+                        phone,
+                        password
+                    };
+                    try {
+                        // Send registration data to server
+                        const response = await fetch('/register', {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(userData)
+                        });
+              
+                        const result = await response.json();
+              
+                        if (response.ok) {
+                            alert("Patient onboarding successful!");
+                            // Redirect to login page or perform other actions after successful registration
+                            window.location.href = "patient-login.html";
+                        } else {
+                            alert("Registration failed. Please try again.");
+                        }
+                    } catch (error) {
+                        console.error("Error during registration:", error);
+                        alert("An error occurred. Please try again later.");
+                    }
+                });
+                });
+
+            </script>
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+    <!-- <script src="js/authenticatoin.js"></script> -->
+    </div>
+</body>
+</html>

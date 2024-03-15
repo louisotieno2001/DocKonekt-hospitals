@@ -3,7 +3,7 @@ const doctorBtn = document.getElementById('doctor-btn');
 
 patientBtn.addEventListener("click", async(e) => {
     e.preventDefault();
-    window.location.href = "patient-home.html";
+    window.location.href = "patient-registration.html";
 });
 
 doctorBtn.addEventListener("click", async(e) => {

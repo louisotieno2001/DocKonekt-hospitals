@@ -1,122 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookings</title>
-    <link rel="stylesheet" href="styles/index.css">
-    <link rel="stylesheet" href="styles/small-devices.css">
-    <link rel="icon" href="./res/Picture4.png" type="image/x-icon">
-    <style>
-       /* Add your CSS styling here */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookings</title>
+  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="styles/small-devices.css">
+  <link rel="icon" href="./res/Picture4.png" type="image/x-icon">
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+  <meta name="keywords" content="DocKonekt, hospital, health, search">
+  <meta name="author" content="Futurion Labs">
 
-        body {
-            overflow-x: hidden;
-        }
-        
-       .card {
-           border: 1px solid #424242;
-           color: aliceblue;
-           padding: 10px;
-           border-radius: 5px;
-           margin: 15px;
-           width: 98%; /* Make the card full width */
-           background-color: #212121; /* White background */
-           box-sizing: border-box; /* Include padding and border in the element's total width and height */
-       }
-       
-       button {
-           background-color: #4CAF50;
-           color: white;
-           padding: 10px;
-           border: none;
-           border-radius: 5px;
-           cursor: pointer;
-       }
+  <!-- Open Graph Protocol for Social Media Sharing -->
+  <meta property="og:title" content="DocKonekt">
+  <meta property="og:description"
+    content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+  <meta property="og:image" content="https://dockonekt.com/app/public/res/Picture4.png">
+  <meta property="og:url" content="https://dockonekt.com">
+  <meta property="og:type" content="website">
 
-    </style>
+  <!-- Twitter Card for Twitter Sharing -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@louiso_chieng1">
+  <meta name="twitter:title" content="DocKonekt">
+  <meta name="twitter:description"
+    content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+  <meta name="twitter:image" content="https://dockonekt.com/app/public/res/Picture4.png">
+  <style>
+    /* Add your CSS styling here */
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .card {
+      border: 1px solid #424242;
+      color: aliceblue;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 15px;
+      width: 98%;
+      /* Make the card full width */
+      background-color: #212121;
+      /* White background */
+      box-sizing: border-box;
+      /* Include padding and border in the element's total width and height */
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #proceed {
+      margin-left: 80px;
+    }
+
+    #cancel {
+      margin-left: 80px;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="top_bar">
-        <img src="./res/Picture4.png" alt="logo" class="logo">
-        <ul class="menu-items" id="menu-items">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="https://dockonekt.com/health_blog.html">Health Blog</a></li>
-            <li><a href="get_in_touch.html">Contact Us</a></li>
-            <li><a href="referral-form.html">Refer to another hospital</a></li>
-        </ul>
-        <img src="./res/menu_icon.png" alt="menu_icon" class="menu_icon" id="menu_icon">
-        <div class="profile">
-            <img src="./res/photo.avif" alt="Profile image">
-        </div>
+  <div class="top_bar">
+    <img src="./res/Picture4.png" alt="logo" class="logo">
+    <ul class="menu-items" id="menu-items">
+        <li><a href="index.html">Switch User</a></li>
+        <li><a href="patient-home.html">Home</a></li>
+        <li><a href="https://dockonekt.com/blogs">Health Blog</a></li>
+        <li><a href="get_in_touch.html">Contact Us</a></li>
+        <li><a href="referral-form.html">Refer to another hospital</a></li>
+    </ul>
+    <img src="./res/menu_icon.png" alt="menu_icon" class="menu_icon" id="menu_icon">
+    <div class="profile">
+        <img src="./res/photo.avif" alt="Profile image">
     </div>
-    <div class="booking">
-        <div class="schedule-container" id="schedule-container">
-            <div class="blogtitle"></div>
-        </div>
-        <div class="blogtitle"></div>
+</div>
+  <div class="booking">
+    <div class="schedule-container" id="schedule-container">
+      <div class="blogtitle"></div>
+      <dialog class="dialog" style="background-color: #66BB6A; border: none; border-radius: 8px;">
+        <h3 style="color: red;">Warning! This is an irreversable process, are you sure you want to proceed?</h3>
+        </p>
+        <form action="">
+          <input type="text" placeholder="Doctor's name" id="doctor-name"> <br>
+          <input type="text" placeholder="Time of the appointment" id="time">
+          <input type="tel" placeholder="0711223344" id="phone"> <br>
+          <label for="option">Do you agree to be through using this phone number?</label> <br>
+          <input type="text" placeholder="Yes/No" id="agreement">
+        </form>
+        <button class="button-9" id="proceed">Proceed</button>
+        <button class="button-9" id="cancel">Cancel</button>
+        <p>By clicking proceed you agree to DocKonekt terms and conditions! <a
+            href="https://dockonekt.com/terms.html">Terms of service</a>
+      </dialog>
     </div>
     <div class="blogtitle"></div>
-    <div class="bottom_bar">
-        <footer class="footer">
-            <center><p>Follow us on social media below</p></center>
-            <div class="socials">
-                <li class="socials_lin"><a href="https://www.linkedin.com/company/futurionlabs/?viewAsMember=true" target="_blank"><img src="res/linkedin.png" alt="LinkedIn"></a></li>
-                <li class="socials_fb"><a href="https://www.facebook.com/profile.php?id=61551541325742" target="_blank"><img src="res/Facebook.png" alt="Facebook"></a></li>
-                <li class="socials_ig"><a href="https://www.instagram.com/futurion_labs123/" target="_blank"><img src="res/Instagram.png" alt="Instagram"></a></li>
-                <li class="socials_wa"><a href="https://wa.me/254746852485" target="_blank"><img src="res/icon-whatsapp.webp" alt="Whatsapp"></a></li>
-                <li class="socials_tw"><a href="https://twitter.com/louiso_chieng1" target="_blank"><img src="res/x.jpg" alt="twitter"></a></li>
-            </div>
-            <p>Copyright&copy;2024 Made at Futurion Labs (futurionlab.com). All rights reserved</p>
-        </footer> 
-    </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', async function () {
-              const menuIcon = document.getElementById('menu_icon');
-              const menuItems = document.getElementById('menu-items');
-              const scheduleContainer = document.getElementById('schedule-container');
-            
-              try {
-                const response = await fetch('/api/schedules');
-                const schedules = await response.json();
-                console.log(response);
-            
-                if (response.ok) {
-                  schedules.forEach(schedule => {
-                    const card = document.createElement('div');
-                    card.classList.add('card');
-            
-                    card.innerHTML = `
+  </div>
+  <div class="blogtitle"></div>
+  <div class="bottom_bar">
+    <footer class="footer">
+      <center>
+        <p>Follow us on social media below</p>
+      </center>
+      <div class="socials">
+        <li class="socials_lin"><a href="https://www.linkedin.com/company/futurionlabs/?viewAsMember=true"
+            target="_blank"><img src="res/linkedin.png" alt="LinkedIn"></a></li>
+        <li class="socials_fb"><a href="https://www.facebook.com/profile.php?id=61551541325742" target="_blank"><img
+              src="res/Facebook.png" alt="Facebook"></a></li>
+        <li class="socials_ig"><a href="https://www.instagram.com/futurion_labs123/" target="_blank"><img
+              src="res/Instagram.png" alt="Instagram"></a></li>
+        <li class="socials_wa"><a href="https://wa.me/254746852485" target="_blank"><img src="res/icon-whatsapp.webp"
+              alt="Whatsapp"></a></li>
+        <li class="socials_tw"><a href="https://twitter.com/louiso_chieng1" target="_blank"><img src="res/x.jpg"
+              alt="twitter"></a></li>
+      </div>
+      <p>Copyright&copy;2024 Made at <a href="https://futurionlab.com"> Futurion Labs</a>. All rights reserved</p>
+    </footer>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function () {
+
+      const menuIcon = document.getElementById('menu_icon');
+      const menuItems = document.getElementById('menu-items');
+      const scheduleContainer = document.getElementById('schedule-container');
+
+      try {
+        const response = await fetch('/api/schedules');
+        const schedules = await response.json();
+        // console.log(response);
+
+        if (response.ok) {
+          schedules.forEach(schedule => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            card.innerHTML = `
                       <h2>${schedule.doctor_name}</h2>
                       <p>Speciality: ${schedule.speciality}</p>
                       <p>Time Available: ${schedule.time_available}</p>
                       <p>General Price: ${schedule.general_price}</p>
+                      <p>Booked status: ${schedule.booked_status}</p>
                     `;
-            
-                    const button = document.createElement('button');
-                    button.textContent = 'Book Appointment';
-                    button.addEventListener('click', function () {
-                      alert(`Book appointment for ${schedule.doctor_name}`);
-                    });
-            
-                    card.appendChild(button);
-                    scheduleContainer.appendChild(card);
-                  });
-            
-                //   window.confirm("All ok");
+
+            const button = document.createElement('button');
+            button.textContent = `${schedule.booked_status}`;
+            button.addEventListener('click', async (e) => {
+              e.preventDefault();
+              alert(`Book appointment with ${schedule.doctor_name}`);
+
+              const dialog = document.querySelector("dialog");
+              const proceedButton = document.getElementById("proceed");
+              const cancelButton = document.getElementById('cancel');
+              dialog.showModal();
+
+              proceedButton.addEventListener("click", async (e) => {
+                e.preventDefault();
+                button.textContent = `${schedule.booked_status}`;
+
+                const doctorName = document.getElementById('doctor-name');
+                const appointmentTime = document.getElementById('time');
+                const phoneNumber = document.getElementById('phone');
+                const agreement = document.getElementById('agreement');
+
+                const doctorNameValue = doctorName.value.trim();
+                const appointmentTimeValue = appointmentTime.value.trim();
+                const phoneNumberValue = phoneNumber.value.trim();
+                const agreementValue = agreement.value.trim();
+
+                if (doctorNameValue === "" || appointmentTimeValue === "" || phoneNumberValue === "" || agreementValue === "") {
+                  alert("Please fill all input fields");
                 } else {
-                  window.confirm("All not ok");
+
+                  let bookingData = {
+                    doctor: doctorNameValue,
+                    time: appointmentTimeValue,
+                    phone: phoneNumberValue,
+                    agreement: agreementValue,
+                  };
+
+                  try {
+                    const res = await fetch('/bookings', {
+                      method: "POST",
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(bookingData)
+                    });
+                    const json = await res.json();
+
+                    // console.log(res);
+
+                    if (res.ok) {
+                      dialog.close();
+                      window.confirm(`You have successfully book an appointment with ${schedule.doctor_name} at ${schedule.time_available}`);
+                      location.reload();
+                    }
+                    else {
+                      window.confirm("Something went wrong");
+                    }
+                  } catch (error) {
+                    console.error("Something went wrong", error);
+                  }
+
                 }
-              } catch (error) {
-                console.error('Error fetching schedule data:', error);
-                window.confirm("Can't fetch schedule data from the server");
-              }
-            
-              menuIcon.addEventListener('click', function () {
-                menuItems.classList.toggle('show');
+
               });
+
+              cancelButton.addEventListener("click", async (e) => {
+                e.preventDefault();
+                dialog.close();
+              });
+
+
             });
-               
-        </script>
+
+            card.appendChild(button);
+            scheduleContainer.appendChild(card);
+          });
+
+        } else {
+          window.confirm("Something went wrong!");
+        }
+      } catch (error) {
+        console.error('Error fetching schedule data:', error);
+        window.confirm("Something went wrong!");
+      }
+
+      menuIcon.addEventListener('click', function () {
+        menuItems.classList.toggle('show');
+      });
+    });
+  </script>
 </body>
+
 </html>

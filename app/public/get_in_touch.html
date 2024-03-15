@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,74 @@
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/small-devices.css">
     <link rel="icon" href="./res/Picture4.png" type="image/x-icon">
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+    <meta name="keywords" content="DocKonekt, hospital, health, search">
+    <meta name="author" content="Futurion Labs">
+
+    <!-- Open Graph Protocol for Social Media Sharing -->
+    <meta property="og:title" content="DocKonekt">
+    <meta property="og:description"
+        content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+    <meta property="og:image" content="https://dockonekt.com/app/public/res/Picture4.png">
+    <meta property="og:url" content="https://dockonekt.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card for Twitter Sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@louiso_chieng1">
+    <meta name="twitter:title" content="DocKonekt">
+    <meta name="twitter:description"
+        content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+    <meta name="twitter:image" content="https://dockonekt.com/app/public/res/Picture4.png">
+    <style>
+        @media (max-width: 1068px) {
+            body {
+                right: 0;
+            }
+
+            .form-div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding-left: 8px;
+            }
+
+            .form {
+                padding: .8em;
+                background-color: #616161;
+                border-radius: 10px;
+                font-weight: bolder;
+                width: 90%;
+                padding: 15px;
+            }
+
+            #urgency {
+                width: 340px;
+            }
+
+            form label {
+                padding-left: 15px;
+            }
+
+            form input {
+                width: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <div class="top_bar">
         <img src="./res/Picture4.png" alt="logo" class="logo">
         <ul class="menu-items" id="menu-items">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="health_blog.html">Health Blog</a></li>
+            <li><a href="index.html">Switch User</a></li>
+            <li><a href="patient-home.html">Home</a></li>
+            <li><a href="https://dockonekt.com/blogs">Health Blog</a></li>
             <li><a href="get_in_touch.html">Contact Us</a></li>
+            <li><a href="referral-form.html">Refer to another hospital</a></li>
         </ul>
         <img src="./res/menu_icon.png" alt="menu_icon" class="menu_icon" id="menu_icon">
         <div class="profile">
@@ -22,42 +83,51 @@
         </div>
     </div>
     <div class="text-explain">
-        <p>Send a message with any comments, inquiries or comments below and we will get back to you immidiately. Enter a valid email address as we will use it to get back to you.</p>
+        <p>Send a message with any comments, inquiries or comments below and we will get back to you immidiately. Enter
+            a valid email address as we will use it to get back to you.</p>
     </div>
     <div class="form-div">
-    <form action="" method="" class="form" id="form">
-        <label for="name">Name</label> <br>
-        <input type="text" name="name" id="name" required placeholder="John Doe"><br>
-        <label for="email">Email</label><br>
-        <input type="email" name="email" id="email" required placeholder="johndoe@gmail.com"><br>
-        <label for="phone">Phone</label><br>
-        <input type="text" name="phone" id="phone" required placeholder="0711223344"><br>
-        <label for="message">Message</label><br>
-        <textarea name="message" id="message" cols="30" rows="10" required
-            placeholder="Write your message here"></textarea>
+        <form action="" method="" class="form" id="form">
+            <label for="name">Name</label> <br>
+            <input type="text" name="name" id="name" required placeholder="John Doe"><br>
+            <label for="email">Email</label><br>
+            <input type="email" name="email" id="email" required placeholder="johndoe@gmail.com"><br>
+            <label for="phone">Phone</label><br>
+            <input type="text" name="phone" id="phone" required placeholder="0711223344"><br>
+            <label for="message">Message</label><br>
+            <textarea name="message" id="message" cols="30" rows="10" required
+                placeholder="Write your message here"></textarea>
 
             <button class="submit" type="submit" id="submit">Send</button>
-    </form>
+        </form>
+        <canvas id="fireworksCanvas"></canvas>
     </div>
     <div class="bottom_bar">
         <footer class="footer">
-            <center><p>Follow us on social media below</p></center>
+            <center>
+                <p>Follow us on social media below</p>
+            </center>
             <div class="socials">
-                <li class="socials_lin"><a href="https://www.linkedin.com/company/futurionlabs/?viewAsMember=true" target="_blank"><img src="res/linkedin.png" alt="LinkedIn"></a></li>
-                <li class="socials_fb"><a href="https://www.facebook.com/profile.php?id=61551541325742" target="_blank"><img src="res/Facebook.png" alt="Facebook"></a></li>
-                <li class="socials_ig"><a href="https://www.instagram.com/futurion_labs123/" target="_blank"><img src="res/Instagram.png" alt="Instagram"></a></li>
-                <li class="socials_wa"><a href="https://wa.me/254746852485" target="_blank"><img src="res/icon-whatsapp.webp" alt="Whatsapp"></a></li>
-                <li class="socials_tw"><a href="https://twitter.com/louiso_chieng1" target="_blank"><img src="res/x.jpg" alt="twitter"></a></li>
+                <li class="socials_lin"><a href="https://www.linkedin.com/company/futurionlabs/?viewAsMember=true"
+                        target="_blank"><img src="res/linkedin.png" alt="LinkedIn"></a></li>
+                <li class="socials_fb"><a href="https://www.facebook.com/profile.php?id=61551541325742"
+                        target="_blank"><img src="res/Facebook.png" alt="Facebook"></a></li>
+                <li class="socials_ig"><a href="https://www.instagram.com/futurion_labs123/" target="_blank"><img
+                            src="res/Instagram.png" alt="Instagram"></a></li>
+                <li class="socials_wa"><a href="https://wa.me/254746852485" target="_blank"><img
+                            src="res/icon-whatsapp.webp" alt="Whatsapp"></a></li>
+                <li class="socials_tw"><a href="https://twitter.com/louiso_chieng1" target="_blank"><img src="res/x.jpg"
+                            alt="twitter"></a></li>
             </div>
-            <p>Copyright&copy;2024 Made at Futurion Labs (futurionlab.com). All rights reserved</p>
-        </footer> 
+            <p>Copyright&copy;2024 Made at <a href="https://futurionlab.com"> Futurion Labs</a>. All rights reserved</p>
+        </footer>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const menuIcon = document.getElementById('menu_icon');
                 const menuItems = document.getElementById('menu-items');
-        
+
                 menuIcon.addEventListener('click', function () {
-                menuItems.classList.toggle('show');
+                    menuItems.classList.toggle('show');
                 });
 
                 //Form validation for connection requests
@@ -67,131 +137,132 @@
                 const phone = document.getElementById("phone");
                 const message = document.getElementById("message");
                 const submit = document.getElementById("submit");
-                
-                submit.addEventListener("click", async (e) => {
-                  e.preventDefault();
-                
-                  //Get the values from the input fields
-                  const unameValue = uname.value.trim();
-                  const emailValue = email.value.trim();
-                  const phoneValue = phone.value.trim();
-                  const messageValue = message.value.trim();
-                
-                  // Check if any of the fields is empty
-                  if (unameValue === "" && emailValue === "" && phoneValue === "" && messageValue === "") {
-                    alert("Please fill all input fields");
-                  }
-                  else {
-                    let data = {
-                      name: unameValue,
-                      email: emailValue,
-                      phone: phoneValue,
-                      message: messageValue,
-                    }
-                
-                    try {
-                      
-                    
-                    const res = await fetch('/api/messages', {
-                      method: "POST",
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify(data)
-                    });
-                    const json = await res.json();
 
-                    // console.log(res);
-                
-                    if(res.ok){
-                      // Reset the form after successful submission
-                      uname.value = "";
-                      email.value = "";
-                      phone.value = "";
-                      message.value = "";
-                
-                      window.confirm("Your message is sucessfully sent");
-                      mtForm.style.display = 'none';
-                      playFireworks();
+                submit.addEventListener("click", async (e) => {
+                    e.preventDefault();
+
+                    //Get the values from the input fields
+                    const unameValue = uname.value.trim();
+                    const emailValue = email.value.trim();
+                    const phoneValue = phone.value.trim();
+                    const messageValue = message.value.trim();
+
+                    // Check if any of the fields is empty
+                    if (unameValue === "" && emailValue === "" && phoneValue === "" && messageValue === "") {
+                        alert("Please fill all input fields");
                     }
-                    else{
-                       console.log("Something went wrong");
+                    else {
+                        let data = {
+                            name: unameValue,
+                            email: emailValue,
+                            phone: phoneValue,
+                            message: messageValue,
+                        }
+
+                        try {
+
+
+                            const res = await fetch('/messages', {
+                                method: "POST",
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(data)
+                            });
+                            const json = await res.json();
+
+                            // console.log(res);
+
+                            if (res.ok) {
+                                // Reset the form after successful submission
+                                uname.value = "";
+                                email.value = "";
+                                phone.value = "";
+                                message.value = "";
+
+                                window.confirm("Your message is sucessfully sent");
+                                mtForm.style.display = 'none';
+                                playFireworks();
+                            }
+                            else {
+                                console.log("Something went wrong");
+                            }
+
+                        } catch (error) {
+                            console.error("Error during sending of message:", error);
+                        }
+
                     }
-                
-                  } catch (error) {
-                    console.error("Error during sending of message:", error); 
-                  }
-                    
-                  }
                 });
 
                 function fireworks() {
-                  const canvas = document.getElementById('fireworksCanvas');
-                  const ctx = canvas.getContext('2d');
-                
-                  canvas.width = window.innerWidth;
-                  canvas.height = window.innerHeight;
-                
-                  const fireworksArray = [];
-                
-                  function createFirework() {
-                      const firework = {
-                          x: Math.random() * canvas.width,
-                          y: canvas.height,
-                          color: `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`,
-                          radius: 2,
-                          speed: Math.random() * 20 + 10, // Adjusted for faster speed
-                          angle: Math.random() * Math.PI * 2,
-                          life: true,
-                      };
-                
-                      fireworksArray.push(firework);
-                  }
-                
-                  function drawFirework(firework) {
-                      ctx.beginPath();
-                      ctx.arc(firework.x, firework.y, firework.radius, 0, Math.PI * 2);
-                      ctx.fillStyle = firework.color;
-                      ctx.fill();
-                  }
-                
-                  function updateFireworks() {
-                      fireworksArray.forEach((firework, index) => {
-                          if (firework.life) {
-                              firework.x += Math.cos(firework.angle) * firework.speed;
-                              firework.y += Math.sin(firework.angle) * firework.speed;
-                              firework.radius *= 1.03; // Adjusted for a faster growth rate
-                
-                              drawFirework(firework);
-                
-                              if (firework.y < 0 || firework.x < 0 || firework.x > canvas.width || firework.radius > 15) {
-                                  fireworksArray.splice(index, 1);
-                              }
-                          }
-                      });
-                  }
-                
-                  function animate() {
-                      ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                      if (Math.random() < 0.08) { // Adjusted for more frequent fireworks
-                          createFirework();
-                      }
-                
-                      updateFireworks();
-                
-                      requestAnimationFrame(animate);
-                  }
-                
-                  animate();
+                    const canvas = document.getElementById('fireworksCanvas');
+                    const ctx = canvas.getContext('2d');
+
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+
+                    const fireworksArray = [];
+
+                    function createFirework() {
+                        const firework = {
+                            x: Math.random() * canvas.width,
+                            y: canvas.height,
+                            color: `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`,
+                            radius: 2,
+                            speed: Math.random() * 20 + 10, // Adjusted for faster speed
+                            angle: Math.random() * Math.PI * 2,
+                            life: true,
+                        };
+
+                        fireworksArray.push(firework);
+                    }
+
+                    function drawFirework(firework) {
+                        ctx.beginPath();
+                        ctx.arc(firework.x, firework.y, firework.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = firework.color;
+                        ctx.fill();
+                    }
+
+                    function updateFireworks() {
+                        fireworksArray.forEach((firework, index) => {
+                            if (firework.life) {
+                                firework.x += Math.cos(firework.angle) * firework.speed;
+                                firework.y += Math.sin(firework.angle) * firework.speed;
+                                firework.radius *= 1.03; // Adjusted for a faster growth rate
+
+                                drawFirework(firework);
+
+                                if (firework.y < 0 || firework.x < 0 || firework.x > canvas.width || firework.radius > 15) {
+                                    fireworksArray.splice(index, 1);
+                                }
+                            }
+                        });
+                    }
+
+                    function animate() {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                        if (Math.random() < 0.08) { // Adjusted for more frequent fireworks
+                            createFirework();
+                        }
+
+                        updateFireworks();
+
+                        requestAnimationFrame(animate);
+                    }
+
+                    animate();
                 }
-                
+
                 // Call this function after a successful form submission
                 function playFireworks() {
-                  fireworks();
-                } 
+                    fireworks();
+                }
             });
         </script>
     </div>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,29 @@
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/small-devices.css">
     <link rel="icon" href="./res/Picture4.png" type="image/x-icon">
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+    <meta name="keywords" content="DocKonekt, hospital, health, search">
+    <meta name="author" content="Futurion Labs">
+
+    <!-- Open Graph Protocol for Social Media Sharing -->
+    <meta property="og:title" content="DocKonekt">
+    <meta property="og:description"
+        content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+    <meta property="og:image" content="https://dockonekt.com/app/public/res/Picture4.png">
+    <meta property="og:url" content="https://dockonekt.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card for Twitter Sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@louiso_chieng1">
+    <meta name="twitter:title" content="DocKonekt">
+    <meta name="twitter:description"
+        content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+    <meta name="twitter:image" content="https://dockonekt.com/app/public/res/Picture4.png">
 </head>
+
 <body>
     <div class="verification">
         <h1>Doctor verification</h1>
@@ -39,15 +62,15 @@
                             },
                             body: JSON.stringify({ email, secretCode }),
                         })
-                        .then(response => {
-                            if (response.ok) {
-                                alert('Verification successful!');
-                                window.location.href = "doctor-home.html";
-                            } else {
-                                alert('Verification failed. Please check your email and secret code.');
-                            }
-                        })
-                        .catch(error => console.error('Error verifying doctor:', error));
+                            .then(response => {
+                                if (response.ok) {
+                                    alert('Verification successful!');
+                                    window.location.href = "doctor-home.html";
+                                } else {
+                                    alert('Verification failed. Please check your email and secret code.');
+                                }
+                            })
+                            .catch(error => console.error('Error verifying doctor:', error));
                     } else {
                         alert('Please enter both email and secret code.');
                     }
@@ -56,4 +79,5 @@
         </script>
     </div>
 </body>
+
 </html>
