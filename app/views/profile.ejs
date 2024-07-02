@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body {
+            background-color: #424242;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .top_bar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: #424242;
+            align-items: center;
+            padding: 10px 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            max-height: 50px;
+            max-width: 50px;
+        }
+
+        .menu_icon {
+            display: none;
+        }
+
+        .profile {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: beige;
+            margin: 0 1px;
+            cursor: pointer;
+        }
+
+        .menu-items {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-items li {
+            margin-right: 20px;
+        }
+
+        .menu-items li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-items li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .tab {
+            margin: 0 10px;
+            padding: 10px 20px;
+            color: #fff;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .tab.active {
+            border-bottom: 2px solid #fff;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            color: #fff;
+            background-color: #424242;
+            border-radius: 5px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .profile-pic {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: beige;
+            margin: .1em;
+            cursor: pointer;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .info-tab {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #616161;
+            padding: 20px;
+            margin-top: 50px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: sans-serif;
+        }
+
+        .data {
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .data .material-symbols-outlined {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+            font-size: 24px;
+        }
+
+        .card {
+            background-color: #575656;
+            margin: 3px;
+            color: #fff;
+            padding: .5em;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #fff;
+            padding: .5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        dialog {
+            border: none;
+            background-color: #212121;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        input,
+        textarea {
+            border: none;
+            width: 290px;
+            padding: 8px;
+            outline: none;
+            border-radius: 8px;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        input:hover,
+        textarea:hover {
+            background-color: #f0f0f0;
+        }
+
+        .status {
+            background-color: #4CAF50;
+            padding: .5em;
+            border-radius: 5px;
+            width: max-content;
+        }
+
+        .preview {
+            height: 40px;
+            width: 40px;
+            display: none;
+            margin: 20 auto;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .menu-items {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #424242;
+                padding: 10px 0;
+                text-align: center;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+
+            .menu-items.show {
+                display: flex;
+                flex-direction: column;
+                margin-top: 35px;
+            }
+
+            .status {
+                background-color: #4CAF50;
+                padding: .5em;
+                border-radius: 5px;
+                width: max-content;
+            }
+
+            .menu-items li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .tab {
+                margin: 0 5px;
+                padding: 10px 10px;
+            }
+
+            .logo {
+                display: none;
+            }
+
+            .top_bar {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .profile {
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+                background-color: beige;
+                margin: .1em;
+                background-position: center;
+                background-size: cover;
+            }
+
+            .profile-pic {
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+                background-color: beige;
+                margin: .1em;
+                background-position: center;
+                background-size: cover;
+            }
+
+            .menu_icon {
+                display: block;
+            }
+
+            .menu-items {
+                display: none;
+                padding: 1em;
+                text-align: left;
+            }
+
+            .top_bar ul.show {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 37px;
+                left: 0;
+                background-color: #424242;
+                width: 100%;
+                z-index: 1000;
+                text-align: left;
+            }
+
+            .menu-items li a {
+                text-decoration: none;
+                color: #fff;
+                padding: 1.5em;
+            }
+
+            .menu-items li {
+                display: block;
+                text-align: left;
+                margin-left: -40px;
+                padding: .8em;
+            }
+
+            .info-tab {
+                width: 280px;
+                margin: 0 auto;
+                background-color: #616161;
+                padding: 20px;
+                margin-top: 30px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                font-family: sans-serif;
+                height: max-content;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top_bar">
+        <img src="/res/Picture4.png" alt="logo" class="logo">
+        <img src="/res/menu_icon.png" alt="menu_icon" class="menu_icon" id="menu_icon">
+        <ul class="menu-items" id="menu-items">
+            <li><a href="/home" title="Home page">Home</a></li>
+            <li><a href="/profile" title="Profile page">Profile</a></li>
+            <li><a href="/messages" title="Contact Us page">Contact Us</a></li>
+        </ul>
+        <div class="profile" id="profile"   style="background-image: url('/uploads/<%=  user.profile_pic %>');">"></div>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" data-tab="profile-tab">Profile</div>
+        <div class="tab" data-tab="appointments-tab">Appointments</div>
+        <div class="tab" data-tab="followups-tab">Follow-ups</div>
+    </div>
+
+    <div class="tab-content active" id="profile-tab">
+        <div class="info-tab">
+            <div class="profile-pic" id="profile-pic"
+                style="background-image: url('/uploads/<%=  user.profile_pic %>');"></div>
+            <input type="file" id="fileInput" style="display: none;">
+            <div class="preview" id="preview">
+                <button id="edit-pic">Submit</button>
+            </div>
+            <h2>Welcome <%= user.name %>
+            </h2>
+            <p class="data"><span class="material-symbols-outlined">
+                    mail
+                </span>
+                <%= user.email %>
+            </p>
+            <p class="data"><span class="material-symbols-outlined">
+                    phone_enabled
+                </span>
+                <%= user.phone %>
+            </p>
+            <p class="data">
+                <span class="material-symbols-outlined">
+                    patient_list
+                </span>
+                <%= user.patient_number %>
+            </p>
+
+            <p>You have an account with <%= user.hospital %>, to get personalised access update you inpatient or
+                    outpatient number below</p>
+
+            <button id="ip-no">Update IP/OP number</button>
+        </div>
+    </div>
+
+    <div class="tab-content" id="appointments-tab">
+        <h2>Appointments</h2>
+        <% if (appointments.length===0) { %>
+            <p>No appointments booked</p>
+            <% } else { %>
+                <% appointments.forEach((appointment, index)=> { %>
+                    <div class="card" id="card-<%= index %>">
+                        <div class="status">
+                            <%= appointment.attended %>
+                        </div>
+                        <h3>
+                            Doctor: <%= appointment.doctor_name %>
+                        </h3>
+                        <p>Date: <%= appointment.date %> at <%= appointment.time %>
+                        </p>
+                        <button class="cancel" data-slot-id="<%= appointment.id%>"
+                            data-slot-status="<%= appointment.cancel %>"
+                            data-slot-attended="<%= appointment.attended %>">Cancel</button>
+                        <button class="attend" data-slot-id="<%= appointment.id%>">Attended</button>
+                        <button class="follow" data-slot-id="<%= appointment.id%>"
+                            data-slot-status="<%= appointment.cancel %>"
+                            data-slot-attended="<%= appointment.attended %>">Book follow up</button>
+                    </div>
+                    <% }); %>
+                        <% } %>
+    </div>
+
+    <div class="tab-content" id="followups-tab">
+        <h2>Follow-ups</h2>
+        <% if (appointments.length===0) { %>
+            <p>No appointments booked</p>
+            <% } else { %>
+                <% appointments.forEach((appointment, index)=> { %>
+                    <% if (appointment.followup_time && appointment.followup_date) { %>
+                        <div class="card" id="card-<%= index %>">
+                            <div class="status">
+                                <%= appointment.attended %>
+                            </div>
+                            <h3>
+                                Doctor: <%= appointment.doctor_name %>
+                            </h3>
+                            <p>Attended on: <%= appointment.date %> at <%= appointment.time %>
+                            </p>
+                            <p>Follow-up Date: <%= appointment.followup_date %> at <%= appointment.followup_time %>
+                            </p>
+                        </div>
+                        <% } %>
+                            <% }); %>
+                                <% } %>
+    </div>
+
+    <dialog id="cancel">
+        <h2 style="color: #fff;">Fill in the details below</h2>
+        <input type="hidden" name="id" id="id">
+        <textarea name="reason" id="reason" cols="30" rows="10"
+            placeholder="What is you reason to cancel..."></textarea> <br>
+        <button id="submit-cancel">Submit</button>
+        <button id="close-cancel">Close</button>
+    </dialog>
+    <dialog id="followup">
+        <h2 style="color: #fff;">Fill in the details below</h2>
+        <input type="hidden" name="slotid" id="slotid"><br>
+        <input type="time" name="time" id="follow-time"><br>
+        <input type="date" name="date" id="follow-date"><br>
+        <textarea name="reason" id="follow-reason" cols="30" rows="10"
+            placeholder="Brief description for follow up..."></textarea> <br>
+        <button id="submit-follow">Submit</button>
+        <button id="close-follow">Close</button>
+    </dialog>
+
+    <dialog id="ipop">
+        <h2 style="color: #fff;">Fill in the details below</h2>
+        <input type="text" name="ipop" id="ipopno" placeholder="Inpatient/Outpatient number"> <br>
+        <button id="submit-ipop">Submit</button>
+        <button id="close-ipop">Close</button>
+    </dialog>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuIcon = document.getElementById('menu_icon');
+            const menuItems = document.getElementById('menu-items');
+            const cancelDialog = document.getElementById('cancel');
+            const slotID = document.getElementById('id');
+            const submitCancel = document.getElementById('submit-cancel');
+            const closeFollow = document.getElementById('close-follow');
+            const submitFollow = document.getElementById('submit-follow');
+            const closeCancel = document.getElementById('close-cancel');
+            const followDialog = document.getElementById('followup');
+            const slotid = document.getElementById('slotid');
+            const upadeteIPOP = document.getElementById('ip-no');
+            const ipDialog = document.getElementById('ipop');
+            const closeIP = document.getElementById('close-ipop');
+            const submitIP = document.getElementById('submit-ipop');
+            const submitPic = document.getElementById('edit-pic');
+            // Get references to elements
+            const profilePic = document.getElementById('profile-pic');
+            const fileInput = document.getElementById('fileInput');
+            const previewDiv = document.getElementById('preview');
+
+            // Function to handle file selection
+            fileInput.addEventListener('change', function () {
+                const file = this.files[0]; // Get the selected file
+                if (file) {
+                    const reader = new FileReader(); // Create a file reader object
+                    reader.onload = function (e) {
+                        // Set the background image of profile-pic to the selected image
+                        profilePic.style.backgroundImage = `url(${e.target.result})`;
+                        // Show the preview div with the submit button
+                        previewDiv.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file); // Read the file as a data URL
+                }
+            });
+
+            // Handle click on profile-pic to trigger file input click
+            profilePic.addEventListener('click', function () {
+                fileInput.click(); // Simulate click on the file input
+            });
+
+            submitPic.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const selectedFile = fileInput.files[0];
+                if (selectedFile) {
+                    const formData = new FormData();
+                    formData.append('profilePic', selectedFile);
+
+                    try {
+                        const response = await fetch('/update-pic', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        if (response.ok) {
+                            const data = await response.json();
+                            alert("Profile updated successfully");
+                        } else {
+                            console.error('Failed to upload image');
+                        }
+                    } catch (error) {
+                        console.error('Error uploading image:', error);
+                    }
+                } else {
+                    console.error('No file selected');
+                }
+            });
+
+
+            closeIP.addEventListener('click', async (e) => {
+                ipDialog.close();
+            });
+
+            upadeteIPOP.addEventListener('click', async (e) => {
+                e.preventDefault();
+                ipDialog.showModal();
+            })
+
+            submitIP.addEventListener('click', async (e) => {
+                e.preventDefault();
+
+                const ipNo = document.getElementById('ipopno').value.trim();
+
+                const userData = {
+                    number: ipNo,
+                }
+
+                try {
+                    // Send registration data to server
+                    const response = await fetch('/updateIp', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(userData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert("Update successful!");
+                        window.location.href = "/profile";
+                    } else {
+                        alert("Update failed. Please try again.");
+                    }
+                } catch (error) {
+                    console.error("Error during update:", error);
+                    alert("An error occurred. Please try again later.");
+                }
+            })
+
+            closeCancel.addEventListener('click', async (e) => {
+                cancelDialog.close();
+            });
+
+            closeFollow.addEventListener('click', async (e) => {
+                followDialog.close();
+            })
+
+            var cancelButtons = document.querySelectorAll('.cancel');
+
+            cancelButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var slotId = this.getAttribute('data-slot-id');
+                    var slotStatus = this.getAttribute('data-slot-status');
+                    var slotAttended = this.getAttribute('data-slot-attended');
+                    slotID.value = slotId;
+                    if (slotStatus) {
+                        alert("Slot already cancelled");
+                        cancelDialog.close();
+                    }
+                    else if (!slotStatus) {
+                        if (slotAttended === "Attended") {
+                            alert("Attended appointments can't be cancelled")
+                            cancelDialog.close();
+                        } else {
+                            cancelDialog.showModal();
+                        }
+                    }
+                });
+            });
+
+
+            submitCancel.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const id = slotID.value.trim();
+                const reason = document.getElementById('reason').value.trim();
+
+                const userData = {
+                    id,
+                    reason
+                }
+
+                try {
+                    // Send registration data to server
+                    const response = await fetch('/cancel', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(userData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert("Cancellation successful!");
+                        // Redirect to login page or perform other actions after successful registration
+                        window.location.href = "/profile";
+                    } else {
+                        alert("Cancellation failed. Please try again.");
+                    }
+                } catch (error) {
+                    console.error("Error during Cancellation:", error);
+                    alert("An error occurred. Please try again later.");
+                }
+            });
+
+            var attendButtons = document.querySelectorAll('.attend');
+
+            attendButtons.forEach(async function (button) {
+                button.addEventListener('click', async function () {
+                    var slotId = this.getAttribute('data-slot-id');
+                    // console.log(slotId);
+                    const userData = {
+                        slotId,
+                    }
+                    try {
+                        // Send registration data to server
+                        const response = await fetch('/attend', {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(userData)
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok) {
+                            alert("Updated successful!");
+                            // Redirect to login page or perform other actions after successful registration
+                            window.location.href = "/profile";
+                        } else {
+                            alert("Updating failed. Please try again.");
+                        }
+                    } catch (error) {
+                        console.error("Error during Cancellation:", error);
+                        alert("An error occurred. Please try again later.");
+                    }
+
+                });
+            });
+
+            var followButtons = document.querySelectorAll('.follow');
+
+            followButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var slotId = this.getAttribute('data-slot-id');
+                    var slotStatus = this.getAttribute('data-slot-status');
+                    var slotAttended = this.getAttribute('data-slot-attended');
+                    slotid.value = slotId;
+                    if (slotAttended) {
+                        followDialog.showModal();
+                    }
+                    else if (!slotAttended) {
+                        alert("Follow ups are for attended appointments");
+                        followDialog.close();
+                    }
+                });
+            });
+
+            submitFollow.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const id = slotid.value.trim();
+                const time = document.getElementById('follow-time').value.trim();
+                const date = document.getElementById('follow-date').value.trim();
+                const description = document.getElementById('follow-reason').value.trim();
+
+                const userData = {
+                    id,
+                    time,
+                    date,
+                    description
+                }
+
+                try {
+                    // Send registration data to server
+                    const response = await fetch('/follow-up', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(userData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert("Follow up booking successful!");
+                        // Redirect to login page or perform other actions after successful registration
+                        window.location.href = "/profile";
+                    } else {
+                        alert("Updating failed. Please try again.");
+                    }
+                } catch (error) {
+                    console.error("Error during Cancellation:", error);
+                    alert("An error occurred. Please try again later.");
+                }
+            })
+
+            profile.addEventListener('click', async (e) => {
+                window.location.href = '/profile';
+            })
+
+            menuIcon.addEventListener('click', () => {
+                menuItems.classList.toggle('show');
+            });
+
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+
+                    // Remove active class from all tabs and tab contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(tc => tc.classList.remove('active'));
+
+                    // Add active class to the clicked tab and corresponding tab content
+                    tab.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

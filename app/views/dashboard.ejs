@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body {
+            background-color: #424242;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        dialog h1 {
+            color: #fff;
+        }
+
+        .suggestions-div {
+            background-color: rgba(0, 0, 0, 0.9);
+            opacity: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
+            z-index: 1000;
+            position: fixed;
+            width: 350px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        #suggestions {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #suggestions li {
+            cursor: pointer;
+            padding: 5px;
+            margin: 15px;
+            color: #00e676;
+        }
+
+        #suggestions li:hover {
+            background-color: #535151;
+            border-radius: 8px;
+        }
+
+        .top_bar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: #424242;
+            align-items: center;
+            padding: 10px 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            max-height: 50px;
+            max-width: 50px;
+        }
+
+        .menu_icon {
+            display: none;
+        }
+
+        .data {
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .data .material-symbols-outlined {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+            font-size: 24px;
+        }
+
+
+        .menu-items {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-items li {
+            margin-right: 20px;
+        }
+
+        .menu-items li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-items li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .tab {
+            margin: 0 10px;
+            padding: 10px 20px;
+            color: #fff;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .tab.active {
+            border-bottom: 2px solid #fff;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            color: #fff;
+            background-color: #424242;
+            border-radius: 5px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .info-tab {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #616161;
+            padding: 20px;
+            margin-top: 50px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: sans-serif;
+        }
+
+        .profile {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: beige;
+            margin: .1em;
+            background-position: center;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+
+        .profile-pic {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: beige;
+            margin: .1em;
+            background-position: center;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        dialog {
+            border: none;
+            background-color: #424242;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .status {
+            background-color: #4CAF50;
+            padding: .5em;
+            border-radius: 5px;
+            width: max-content;
+        }
+
+        input,
+        textarea {
+            border: none;
+            width: 290px;
+            padding: 8px;
+            outline: none;
+            border-radius: 8px;
+        }
+
+        select {
+            border: none;
+            width: 310px;
+            padding: 8px;
+            outline: none;
+            border-radius: 8px;
+        }
+
+        input,
+        select {
+            margin-bottom: 10px;
+        }
+
+
+        .card {
+            background-color: #575656;
+            margin: 8px;
+            color: #fff;
+            padding: .5em;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #fff;
+            padding: .5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .preview {
+            height: 40px;
+            width: 40px;
+            display: none;
+            margin: 20 auto;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+
+            .tab {
+                margin: 0 5px;
+                padding: 10px 10px;
+            }
+
+            .menu-items {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #424242;
+                padding: 10px 0;
+                text-align: center;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+
+            .menu-items.show {
+                display: flex;
+                flex-direction: column;
+                margin-top: 35px;
+            }
+
+            .menu-items li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .logo {
+                display: none;
+            }
+
+            .top_bar {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .profile {
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+                background-color: beige;
+                margin: .1em;
+            }
+
+            .menu_icon {
+                display: block;
+            }
+
+            .menu-items {
+                display: none;
+                padding: 1em;
+                text-align: left;
+            }
+
+            .top_bar ul.show {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 37px;
+                left: 0;
+                background-color: #424242;
+                width: 100%;
+                z-index: 1000;
+                text-align: left;
+            }
+
+            .menu-items li a {
+                text-decoration: none;
+                color: #fff;
+                padding: 1.5em;
+            }
+
+            .menu-items li {
+                display: block;
+                text-align: left;
+                margin-left: -40px;
+                padding: .8em;
+            }
+
+            .info-tab {
+                width: 280px;
+                margin: 0 auto;
+                background-color: #616161;
+                padding: 20px;
+                margin-top: 30px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                font-family: sans-serif;
+                height: 400px;
+            }
+
+            .profile-pic {
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+                background-color: beige;
+                margin: .1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top_bar">
+        <img src="/res/Picture4.png" alt="logo" class="logo">
+        <img src="/res/menu_icon.png" alt="menu_icon" class="menu_icon" id="menu_icon">
+        <ul class="menu-items" id="menu-items">
+            <li><a href="/admin/dashboard" title="Home page">Home</a></li>
+            <li><a href="/admin/dashboard" title="Dashboard">Dashboard</a></li>
+            <li><a href="/admin/dashboard" title="Staff profile">Profile</a></li>
+        </ul>
+        <div class="profile" id="profile" style="background-image: url('/uploads/<%=  user.profile_pic %>');"></div>
+    </div>
+    <div class="display">
+        <div class="tabs">
+            <div class="tab active" data-tab="customer-tab">Customers</div>
+            <div class="tab" data-tab="patients-tab">Patients</div>
+            <div class="tab" data-tab="staff-tab">Staff</div>
+            <div class="tab" data-tab="profile-tab">Profile</div>
+        </div>
+        <div class="tab-content" id="profile-tab">
+            <div class="info-tab">
+                <div class="profile-pic" id="profile-pic"
+                    style="background-image: url('/uploads/<%=  user.profile_pic %>');"></div>
+                <input type="file" id="fileInput" style="display: none;">
+                <div class="preview" id="preview">
+                    <button id="edit-pic">Submit</button>
+                </div>
+                <h2>Welcome <%= user.name %>@ <%= user.hospital%>
+                </h2>
+                <p class="data"><span class="material-symbols-outlined">
+                        mail
+                    </span>
+                    <%= user.email %>
+                </p>
+                <p><span class="material-symbols-outlined">
+                        phone_enabled
+                    </span>
+                    <%= user.phone %>
+                </p>
+            </div>
+        </div>
+
+        <div class="tab-content" id="staff-tab">
+            <div id="card-container">
+                <% workers.forEach(worker=> { %>
+                    <div class="card">
+                        <h3>Name: <%= worker.name %>
+                        </h3>
+                        <p>
+                            Phone: <%= worker.phone %>
+                        </p>
+                        <p>
+                            Email: <%= worker.email %>
+                        </p>
+                        <p>
+                            Role: <%= worker.role %>
+                        </p>
+                        <button class="remove" data-slot-id="<%= worker.id %>">Remove</button>
+                    </div>
+
+                    <% }); %>
+            </div>
+
+        </div>
+
+        <div class="tab-content active" id="customers-tab">
+            <div id="card-container">
+                <% customers.forEach(customer=> { %>
+                    <div class="card">
+                        <h3>Name: <%= customer.name %>
+                        </h3>
+                        <p>
+                            Phone: <%= customer.phone %>
+                        </p>
+                        <p>
+                            Email: <%= customer.email %>
+                        </p>
+                    </div>
+                    <% }); %>
+            </div>
+        </div>
+
+        <div class="tab-content" id="patients-tab">
+            <div id="card-container">
+                <% patients.forEach(patient=> { %>
+                    <div class="card">
+                        <h3>Patient name: <%= patient.name %>
+                        </h3>
+                        <p>
+                            Patient age: <%= patient.age %>
+                        </p>
+                        <p>Registered on: <%= patient.date %> at <%= patient.time %>
+                        </p>
+                        <p>
+                            Inpatient/outpatient number: <%= patient.number %>
+                        </p>
+                    </div>
+                    <% }); %>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const menuIcon = document.getElementById('menu_icon');
+            const menuItems = document.getElementById('menu-items');
+            const profile = document.getElementById('profile');
+
+
+            profile.addEventListener('click', async (e) => {
+                window.location.href = '/admin/dashboard';
+            });
+
+            menuIcon.addEventListener('click', function () {
+                menuItems.classList.toggle('show');
+            });
+
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+
+                    // Remove active class from all tabs and tab contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(tc => tc.classList.remove('active'));
+
+                    // Add active class to the clicked tab and corresponding tab content
+                    tab.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+
+            const submitPic = document.getElementById('edit-pic');
+            // Get references to elements
+            const profilePic = document.getElementById('profile-pic');
+            const fileInput = document.getElementById('fileInput');
+            const previewDiv = document.getElementById('preview');
+
+            // Function to handle file selection
+            fileInput.addEventListener('change', function () {
+                const file = this.files[0]; // Get the selected file
+                if (file) {
+                    const reader = new FileReader(); // Create a file reader object
+                    reader.onload = function (e) {
+                        // Set the background image of profile-pic to the selected image
+                        profilePic.style.backgroundImage = `url(${e.target.result})`;
+                        // Show the preview div with the submit button
+                        previewDiv.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file); // Read the file as a data URL
+                }
+            });
+
+            // Handle click on profile-pic to trigger file input click
+            profilePic.addEventListener('click', function () {
+                fileInput.click(); // Simulate click on the file input
+            });
+
+            submitPic.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const selectedFile = fileInput.files[0];
+                if (selectedFile) {
+                    const formData = new FormData();
+                    formData.append('profilePic', selectedFile);
+
+                    try {
+                        const response = await fetch('/staff-pic', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        if (response.ok) {
+                            const data = await response.json();
+                            alert("Profile updated successfully");
+                        } else {
+                            console.error('Failed to upload image');
+                        }
+                    } catch (error) {
+                        console.error('Error uploading image:', error);
+                    }
+                } else {
+                    console.error('No file selected');
+                }
+            });
+
+            var deleteButtons = document.querySelectorAll('.remove');
+
+            deleteButtons.forEach(async function (button) {
+                button.addEventListener('click', async function () {
+                    var slotId = this.getAttribute('data-slot-id');
+                    const userData = {
+                        slotId,
+                    }
+                    try {
+                        // Send registration data to server
+                        const response = await fetch('/remove', {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(userData)
+                        });
+
+                        const result = await response.json();
+
+                        console.log(result);
+
+                        if (response.ok) {
+                            alert("Deletion successful!");
+                            // Redirect to login page or perform other actions after successful registration
+                            window.location.href = "/admin/dashboard";
+                        } else {
+                            alert("Deleting failed. Please try again.");
+                        }
+                    } catch (error) {
+                        console.error("Error during deletion:", error);
+                        alert("An error occurred. Please try again later.");
+                    }
+
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body {
+            background-color: #424242;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        dialog h1 {
+            color: #fff;
+        }
+
+        .suggestions-div {
+            background-color: rgba(0, 0, 0, 0.9);
+            opacity: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
+            z-index: 1000;
+            position: fixed;
+            width: 350px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        #suggestions {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #suggestions li {
+            cursor: pointer;
+            padding: 5px;
+            margin: 15px;
+            color: #00e676;
+        }
+
+        #suggestions li:hover {
+            background-color: #535151;
+            border-radius: 8px;
+        }
+
+        .top_bar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: #424242;
+            align-items: center;
+            padding: 10px 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            max-height: 50px;
+            max-width: 50px;
+        }
+
+        .menu_icon {
+            display: none;
+        }
+
+        .data {
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .data .material-symbols-outlined {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+            font-size: 24px;
+        }
+
+
+        .menu-items {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-items li {
+            margin-right: 20px;
+        }
+
+        .menu-items li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-items li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .tab {
+            margin: 0 10px;
+            padding: 10px 20px;
+            color: #fff;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .tab.active {
+            border-bottom: 2px solid #fff;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            color: #fff;
+            background-color: #424242;
+            border-radius: 5px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .info-tab {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #616161;
+            padding: 20px;
+            margin-top: 50px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: sans-serif;
+        }
+
+        .profile {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: beige;
+            margin: .1em;
+            background-position: center;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+
+        .profile-pic {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: beige;
+            margin: .1em;
+            background-position: center;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        .button-83 {
+            appearance: button;
+            background-color: transparent;
+            background-image: linear-gradient(to bottom, #fff, #f8eedb);
+            border: 0 solid #e5e7eb;
+            border-radius: .5rem;
+            box-sizing: border-box;
+            color: #482307;
+            column-gap: 1rem;
+            cursor: pointer;
+            display: flex;
+            font-family: ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 100%;
+            font-weight: 700;
+            line-height: 24px;
+            margin: 0;
+            margin-top: 5px;
+            outline: 2px solid transparent;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            text-transform: none;
+            transition: all .1s cubic-bezier(.4, 0, .2, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            box-shadow: -6px 8px 10px rgba(81, 41, 10, 0.1), 0px 2px 2px rgba(81, 41, 10, 0.2);
+        }
+
+        .button-83:active {
+            background-color: #f3f4f6;
+            box-shadow: -1px 2px 5px rgba(81, 41, 10, 0.15), 0px 1px 1px rgba(81, 41, 10, 0.15);
+            transform: translateY(0.125rem);
+        }
+
+        .button-83:focus {
+            box-shadow: rgba(72, 35, 7, .46) 0 0 0 4px, -6px 8px 10px rgba(81, 41, 10, 0.1), 0px 2px 2px rgba(81, 41, 10, 0.2);
+        }
+
+        dialog {
+            border: none;
+            background-color: #424242;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .status {
+            background-color: #4CAF50;
+            padding: .5em;
+            border-radius: 5px;
+            width: max-content;
+        }
+
+        input,
+        textarea {
+            border: none;
+            width: 290px;
+            padding: 8px;
+            outline: none;
+            border-radius: 8px;
+        }
+
+        select {
+            border: none;
+            width: 310px;
+            padding: 8px;
+            outline: none;
+            border-radius: 8px;
+        }
+
+        input,
+        select {
+            margin-bottom: 10px;
+        }
+
+
+        .card {
+            background-color: #575656;
+            margin: 8px;
+            color: #fff;
+            padding: .5em;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #fff;
+            padding: .5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .preview {
+            height: 40px;
+            width: 40px;
+            display: none;
+            margin: 20 auto;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+
+            .tab {
+                margin: 0 5px;
+                padding: 10px 10px;
+            }
+
+            .menu-items {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #424242;
+                padding: 10px 0;
+                text-align: center;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+
+            .menu-items.show {
+                display: flex;
+                flex-direction: column;
+                margin-top: 35px;
+            }
+
+            .menu-items li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .logo {
+                display: none;
+            }
+
+            .suggestions-div {
+                background-color: rgba(0, 0, 0, 0.9);
+                opacity: 100%;
+                border-radius: 8px;
+                margin-top: 5px;
+                z-index: 1000;
+                position: fixed;
+                width: 325px;
+                max-height: 200px;
+                overflow-y: auto;
+            }
+
+            .top_bar {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .profile {
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+                background-color: beige;
+                margin: .1em;
+            }
+
+            .menu_icon {
+                display: block;
+            }
+
+            .menu-items {
+                display: none;
+                padding: 1em;
+                text-align: left;
+            }
+
+            .top_bar ul.show {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 37px;
+                left: 0;
+                background-color: #424242;
+                width: 100%;
+                z-index: 1000;
+                text-align: left;
+            }
+
+            .menu-items li a {
+                text-decoration: none;
+                color: #fff;
+                padding: 1.5em;
+            }
+
+            .menu-items li {
+                display: block;
+                text-align: left;
+                margin-left: -40px;
+                padding: .8em;
+            }
+
+            .info-tab {
+                width: 280px;
+                margin: 0 auto;
+                background-color: #616161;
+                padding: 20px;
+                margin-top: 30px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                font-family: sans-serif;
+                height: 400px;
+            }
+
+            .profile-pic {
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+                background-color: beige;
+                margin: .1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top_bar">
+        <img src="/res/Picture4.png" alt="logo" class="logo">
+        <img src="/res/menu_icon.png" alt="menu_icon" class="menu_icon" id="menu_icon">
+        <ul class="menu-items" id="menu-items">
+            <li><a href="/staff/doctor/home" title="Home page">Home</a></li>
+            <li><a href="/staff/doctor/home" title="Dashboard">Dashboard</a></li>
+            <li><a href="/staff/doctor/home" title="Staff profile">Profile</a></li>
+        </ul>
+        <div class="profile" id="profile" style="background-image: url('/uploads/<%=  user.profile_pic %>');"></div>
+    </div>
+    <div class="display">
+        <div class="tabs">
+            <div class="tab active" data-tab="followups-tab">Patients</div>
+            <div class="tab" data-tab="appointments-tab">Appointments</div>
+            <div class="tab" data-tab="profile-tab">Profile</div>
+        </div>
+        <div class="tab-content" id="profile-tab">
+            <div class="info-tab">
+                <div class="profile-pic" id="profile-pic"
+                    style="background-image: url('/uploads/<%=  user.profile_pic %>');"></div>
+                <input type="file" id="fileInput" style="display: none;">
+                <div class="preview" id="preview">
+                    <button id="edit-pic">Submit</button>
+                </div>
+                <h2>Welcome <%= user.name %>
+                </h2>
+                <p class="data"><span class="material-symbols-outlined">
+                        mail
+                    </span>
+                    <%= user.email %>
+                </p>
+                <p><span class="material-symbols-outlined">
+                        phone_enabled
+                    </span>
+                    <%= user.phone %>
+                </p>
+            </div>
+        </div>
+
+        <div class="tab-content" id="appointments-tab">
+            <h2>Appointments</h2>
+            <div id="card-container">
+                <% slots.forEach(slot=> { %>
+                    <div class="card">
+                        <div class="status">
+                            <%= slot.attended %>
+                        </div>
+                        <h3>
+                            Doctor: <%= slot.doctor_name %>
+                        </h3>
+                        <p>Date: <%= slot.date %> at <%= slot.time %>
+                        </p>
+                        <p>
+                            Status: <%= slot.status %>
+                        </p>
+                        <button style="background-color: #F44336;" class="delete"
+                            data-slot-id="<%= slot.id %>">Delete</button>
+                    </div>
+                    <% }); %>
+            </div>
+            <button class="button-83" id="add-slot">+ Add slot</button>
+        </div>
+
+        <div class="tab-content active" id="followups-tab">
+            <div id="card-container">
+                <% patients.forEach(patient=> { %>
+                    <div class="card">
+                        <div class="status">
+                            <%= patient.status %>
+                        </div>
+                        <h3>Patient name: <%= patient.name %>
+                        </h3>
+                        <p>
+                            Patient age: <%= patient.age %>
+                        </p>
+                        <p>
+                            Patient temperature: <%= patient.temp %>
+                        </p>
+                        <p>
+                            Patient pulse rate: <%= patient.pulse %>
+                        </p>
+                        <p>
+                            Patient respiration rate: <%= patient.respiration %>
+                        </p>
+                        <p>
+                            Patient weight: <%= patient.weight %>
+                        </p>
+                        <p>
+                            Patient height: <%= patient.height %>
+                        </p>
+                        <p>
+                            Patient osygen saturation: <%= patient.oxygen %>
+                        </p>
+                        <p>Registered on: <%= patient.date %> at <%= patient.time %>
+                        </p>
+                        <p>
+                            Inpatient/outpatient number: <%= patient.number %>
+                        </p>
+                        <button class="sendlab" data-slot-id="<%= patient.id %>">Send to lab</button>
+                        <button class="sendpharmacy" data-slot-id="<%= patient.name %>">Send to pharmacy</button>
+                        <button class="handled" data-slot-id="<%= patient.id %>">Handled</button>
+                    </div>
+                    <% }); %>
+            </div>
+        </div>
+        <dialog id="slot">
+            <h1>Fill in these details</h1>
+            <div class="doc-name">
+                <input type="text" name="staff" id="staff" placeholder="Doctor name" required>
+                <div class="suggestions-div">
+                    <ul id="suggestions"></ul>
+                </div>
+            </div>
+            <input type="time" name="time" id="time"> <br>
+            <input type="date" name="date" id="date"><br>
+            <button id="close-slot">Close</button>
+            <button id="submit-slot">Submit</button>
+        </dialog>
+        <dialog id="lab">
+            <h2 style="color: #f8eedb;">Fill in the details below</h2>
+            <input type="hidden" name="patient-id" id="patient-id">
+            <textarea name="tests" id="tests" cols="30" rows="10"
+                placeholder="Describe tests to be done..."></textarea><br>
+            <button id="sendlabbtn">Submit</button>
+            <button id="closelab">Close</button>
+        </dialog>
+        <dialog id="pharmacy">
+            <h2 style="color: #f8eedb;">Fill in the details below</h2>
+            <input type="hidden" name="patientph-id" id="patientph-id">
+            <input type="text" name="diagnosis" id="diagnosis" placeholder="Diagnosis"><br>
+            <textarea name="prescription" id="prescription" cols="30" rows="10"
+                placeholder="Prescription medicines..."></textarea><br>
+            <button id="sendpharmacy">Submit</button>
+            <button id="closepharma">Close</button>
+        </dialog>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const menuIcon = document.getElementById('menu_icon');
+            const menuItems = document.getElementById('menu-items');
+            const profile = document.getElementById('profile');
+            const addSlot = document.getElementById('add-slot');
+            const slotDialog = document.getElementById('slot');
+            const closeSlot = document.getElementById('close-slot');
+            const slotBtn = document.getElementById('submit-slot');
+            const sendLab = document.getElementById('lab');
+            const sendLabBtn = document.getElementById('sendlabbtn');
+            const patientId = document.getElementById('patient-id');
+            const closeLab = document.getElementById('closelab');
+            const sendPharmacy = document.getElementById('pharmacy');
+            const sendPharmaBtn = document.getElementById('sendpharmacy');
+            const patientphId = document.getElementById('patientph-id');
+            const closePharma = document.getElementById('closepharma');
+
+            closeLab.addEventListener('click', async (e) => {
+                e.preventDefault();
+                sendLab.close();
+            });
+
+            closePharma.addEventListener('click', async (e) => {
+                e.preventDefault();
+                sendPharmacy.close();
+            });
+
+            closeSlot.addEventListener('click', async (e) => {
+                e.preventDefault();
+                slotDialog.close()
+            })
+
+            addSlot.addEventListener('click', async (e) => {
+                e.preventDefault()
+                slotDialog.showModal();
+            });
+
+
+            profile.addEventListener('click', async (e) => {
+                window.location.href = '/staff/doctor/home';
+            });
+
+            menuIcon.addEventListener('click', function () {
+                menuItems.classList.toggle('show');
+            });
+
+            slotBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const docName = document.getElementById('staff').value.trim();
+                const date = document.getElementById('date').value.trim();
+                const time = document.getElementById('time').value.trim();
+
+                // Validate input (you may want to implement more robust validation)
+                if (!docName || !date || !time) {
+                    alert("All fields are required.");
+                    return;
+                }
+
+                // Create user data object
+                const userData = {
+                    docName,
+                    date,
+                    time
+                };
+
+                console.log(userData);
+
+                try {
+                    // Send registration data to server
+                    const response = await fetch('/appointments', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(userData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert("Slot set successfully!");
+                        // Redirect to login page or perform other actions after successful registration
+                        slotDialog.close();
+                        window.location.href = '/staff/home'
+                    } else {
+                        alert("Failed. Please try again.");
+                    }
+                } catch (error) {
+                    console.error("Error during slot setting:", error);
+                    alert("An error occurred. Please try again later.");
+                }
+            })
+
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+
+                    // Remove active class from all tabs and tab contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(tc => tc.classList.remove('active'));
+
+                    // Add active class to the clicked tab and corresponding tab content
+                    tab.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            const inputField = document.getElementById('staff');
+            const suggestionsList = document.getElementById('suggestions');
+
+            inputField.addEventListener('input', async function () {
+                const userInput = this.value.trim();
+                if (!userInput) {
+                    suggestionsList.innerHTML = ''; // Clear suggestions if input is empty
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/staffer');
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch staff data');
+                    }
+                    const staffData = await response.json();
+                    console.log(staffData);
+                    const staffNames = staffData.staff.map(staff => staff.name.trim());
+
+                    const matchedStaff = staffNames.filter(name => name.toLowerCase().includes(userInput.toLowerCase()));
+
+                    // Display suggestions
+                    suggestionsList.innerHTML = '';
+                    matchedStaff.forEach(staff => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = staff;
+                        suggestionsList.appendChild(listItem);
+
+                        // Add click event listener to list item
+                        listItem.addEventListener('click', function () {
+                            // Set the value of the input field
+                            inputField.value = staff;
+                            // Clear suggestions
+                            suggestionsList.innerHTML = '';
+                        });
+                    });
+                } catch (error) {
+                    console.error('Error fetching staff:', error);
+                }
+            });
+
+            var deleteButtons = document.querySelectorAll('.delete');
+
+            deleteButtons.forEach(async function (button) {
+                button.addEventListener('click', async function () {
+                    var slotId = this.getAttribute('data-slot-id');
+                    const userData = {
+                        slotId,
+                    }
+                    try {
+                        // Send registration data to server
+                        const response = await fetch('/delete', {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(userData)
+                        });
+
+                        const result = await response.json();
+
+                        console.log(result);
+
+                        if (response.ok) {
+                            alert("Deletion successful!");
+                            // Redirect to login page or perform other actions after successful registration
+                            window.location.href = "/staff/doctor/home";
+                        } else {
+                            alert("Deleting failed. Please try again.");
+                        }
+                    } catch (error) {
+                        console.error("Error during deletion:", error);
+                        alert("An error occurred. Please try again later.");
+                    }
+
+                });
+            });
+
+            var sendLabButtons = document.querySelectorAll('.sendlab');
+
+            sendLabButtons.forEach(async function (button) {
+                button.addEventListener('click', async function () {
+                    var slotId = this.getAttribute('data-slot-id');
+                    patientId.value = slotId;
+                    sendLab.showModal()
+                });
+            });
+
+            var sendPharmaButtons = document.querySelectorAll('.sendpharmacy');
+
+            sendPharmaButtons.forEach(async function (button) {
+                button.addEventListener('click', async function () {
+                    var slotId = this.getAttribute('data-slot-id');
+                    patientId.value = slotId;
+                    sendPharmacy.showModal()
+                });
+            });
+
+            sendPharmaBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const id = patientId.value.trim();
+                const prescription = document.getElementById('prescription').value.trim()
+                const diagnosis = document.getElementById('diagnosis').value.trim();
+
+                const userData = {
+                    id,
+                    prescription,
+                    diagnosis
+                }
+
+                console.log(userData)
+
+                try {
+                    // Send registration data to server
+                    const response = await fetch('/send-to-pharmacy', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(userData)
+                    });
+
+                    const result = await response.json();
+
+                    console.log(result);
+
+                    if (response.ok) {
+                        alert("Sent successful!");
+                        sendLab.close()
+                        window.location.href = "/staff/doctor/home";
+
+                    } else {
+                        alert("Sending failed. Please try again.");
+                    }
+                } catch (error) {
+                    console.error("Error during deletion:", error);
+                    alert("An error occurred. Please try again later.");
+                }
+            })
+
+
+            sendLabBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const id = patientId.value.trim();
+                const tests = document.getElementById('tests').value.trim()
+
+                const userData = {
+                    id,
+                    tests
+                }
+
+                console.log(userData)
+
+                try {
+                    // Send registration data to server
+                    const response = await fetch('/send-to-lab', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(userData)
+                    });
+
+                    const result = await response.json();
+
+                    console.log(result);
+
+                    if (response.ok) {
+                        alert("Sent successful!");
+                        sendLab.close()
+                        window.location.href = "/staff/doctor/home";
+
+                    } else {
+                        alert("Deleting failed. Please try again.");
+                    }
+                } catch (error) {
+                    console.error("Error during deletion:", error);
+                    alert("An error occurred. Please try again later.");
+                }
+            })
+
+            const submitPic = document.getElementById('edit-pic');
+            // Get references to elements
+            const profilePic = document.getElementById('profile-pic');
+            const fileInput = document.getElementById('fileInput');
+            const previewDiv = document.getElementById('preview');
+
+            // Function to handle file selection
+            fileInput.addEventListener('change', function () {
+                const file = this.files[0]; // Get the selected file
+                if (file) {
+                    const reader = new FileReader(); // Create a file reader object
+                    reader.onload = function (e) {
+                        // Set the background image of profile-pic to the selected image
+                        profilePic.style.backgroundImage = `url(${e.target.result})`;
+                        // Show the preview div with the submit button
+                        previewDiv.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file); // Read the file as a data URL
+                }
+            });
+
+            // Handle click on profile-pic to trigger file input click
+            profilePic.addEventListener('click', function () {
+                fileInput.click(); // Simulate click on the file input
+            });
+
+            submitPic.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const selectedFile = fileInput.files[0];
+                if (selectedFile) {
+                    const formData = new FormData();
+                    formData.append('profilePic', selectedFile);
+
+                    try {
+                        const response = await fetch('/staff-pic', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        if (response.ok) {
+                            const data = await response.json();
+                            alert("Profile updated successfully");
+                        } else {
+                            console.error('Failed to upload image');
+                        }
+                    } catch (error) {
+                        console.error('Error uploading image:', error);
+                    }
+                } else {
+                    console.error('No file selected');
+                }
+            });
+
+            var handleButtons = document.querySelectorAll('.handled');
+
+            handleButtons.forEach(async function (button) {
+                button.addEventListener('click', async function () {
+                    var slotId = this.getAttribute('data-slot-id');
+                    const userData = {
+                        slotId,
+                    }
+                    try {
+                        // Send registration data to server
+                        const response = await fetch('/handled', {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(userData)
+                        });
+
+                        const result = await response.json();
+
+                        console.log(result);
+
+                        if (response.ok) {
+                            alert("Updated successful!");
+                            // Redirect to login page or perform other actions after successful registration
+                            window.location.href = "/staff/doctor/home";
+                        } else {
+                            alert("Deleting failed. Please try again.");
+                        }
+                    } catch (error) {
+                        console.error("Error during deletion:", error);
+                        alert("An error occurred. Please try again later.");
+                    }
+
+                });
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>

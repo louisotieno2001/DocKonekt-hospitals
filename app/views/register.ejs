@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/small-devices.css">
+    <link rel="icon" href="/res/Picture4.png" type="image/x-icon">
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+    <meta name="keywords" content="DocKonekt, hospital, health, search">
+    <meta name="author" content="Futurion Labs">
+
+    <!-- Open Graph Protocol for Social Media Sharing -->
+    <meta property="og:title" content="DocKonekt">
+    <meta property="og:description"
+        content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+    <meta property="og:image" content="https://dockonekt.com/app/public/res/Picture4.png">
+    <meta property="og:url" content="https://dockonekt.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card for Twitter Sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@louiso_chieng1">
+    <meta name="twitter:title" content="DocKonekt">
+    <meta name="twitter:description"
+        content="Welcome to DocKonekt. Search for your hospital below or scroll down to pick a hospital.">
+    <meta name="twitter:image" content="https://dockonekt.com/app/public/res/Picture4.png">
+    <style>
+        .suggestions-div {
+            background-color: rgba(0, 0, 0, 0.9);
+            opacity: 100%;
+            border-radius: 8px;
+            margin-top: 170px;
+            z-index: 1000;
+            position: fixed;
+            width: 350px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        #suggestions {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #suggestions li {
+            cursor: pointer;
+            padding: 5px;
+            margin: 15px;
+            color: #00e676;
+        }
+
+        #suggestions li:hover {
+            background-color: #535151;
+            border-radius: 8px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .suggestions-div {
+                background-color: rgba(0, 0, 0, 0.9);
+                opacity: 100%;
+                border-radius: 8px;
+                margin-top: 170px;
+                z-index: 1000;
+                position: fixed;
+                width: 335px;
+                max-height: 200px;
+                overflow-y: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth">
+        <div class="home">
+            <div class="left">
+                <div class="text">
+                    <img src="/res/Picture4.png" alt="logo" class="logo">
+                    <h1> Welcome to DocKonekt</h1>
+                    <p>A service offered to make it easier for doctors and patients to connect.
+                    </p>
+                </div>
+            </div>
+            <div class="right">
+                <form id="register-form" method="post">
+                    <h1>Register</h1>
+                    <input type="text" name="fname" id="fname" required autocomplete="additional-name"
+                        placeholder="John Doe">
+                    <input type="email" name="email" id="email" required autocomplete="email"
+                        placeholder="johndoe@gmail.com">
+                    <input type="tel" name="phone" id="phone" required autocomplete="phone" placeholder="0711223344">
+                    <input type="text" name="hospital" id="hospital" placeholder="Hospital name" required>
+                    <div class="suggestions-div">
+                        <ul id="suggestions"></ul>
+                    </div>
+                    <input type="password" name="password" id="password" required autocomplete="current-password"
+                        placeholder="password"><br>
+                    Show Password<input type="checkbox" id="showPassword">
+                    <button type="button" class="register" id="submit">Register</button>
+                    <p class="alt_account">Already have an account? <a href="/login" id="login-link">Login</a></p>
+                </form>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const submitBtn = document.getElementById('submit');
+                        const passwordInput = document.getElementById('password');
+
+                        submitBtn.addEventListener("click", async () => {
+                            const fullName = document.getElementById('fname').value.trim();
+                            const email = document.getElementById('email').value.trim();
+                            const phone = document.getElementById('phone').value.trim();
+                            const password = document.getElementById('password').value.trim();
+                            const hospital = document.getElementById('hospital').value.trim();
+
+                            // Validate input (you may want to implement more robust validation)
+                            if (!fullName || !email || !phone || !password) {
+                                alert("All fields are required.");
+                                return;
+                            }
+
+                            // Create user data object
+                            const userData = {
+                                fullName,
+                                email,
+                                phone,
+                                password,
+                                hospital
+                            };
+
+                            console.log(userData);
+
+                            try {
+                                // Send registration data to server
+                                const response = await fetch('/register', {
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(userData)
+                                });
+
+                                const result = await response.json();
+
+                                if (response.ok) {
+                                    alert("Patient onboarding successful!");
+                                    // Redirect to login page or perform other actions after successful registration
+                                    window.location.href = "/login";
+                                } else {
+                                    alert("Registration failed. Please try again.");
+                                }
+                            } catch (error) {
+                                console.error("Error during registration:", error);
+                                alert("An error occurred. Please try again later.");
+                            }
+                        });
+
+                        const showPasswordCheckbox = document.getElementById('showPassword');
+
+                        showPasswordCheckbox.addEventListener('change', function () {
+                            if (showPasswordCheckbox.checked) {
+                                passwordInput.type = 'text'; // Change type to 'text' to show the password
+                            } else {
+                                passwordInput.type = 'password'; // Change type back to 'password' to hide the password
+                            }
+                        });
+
+                        const inputField = document.getElementById('hospital');
+                        const suggestionsList = document.getElementById('suggestions');
+
+                        inputField.addEventListener('input', async function () {
+                            const userInput = this.value.trim();
+                            if (!userInput) {
+                                suggestionsList.innerHTML = ''; // Clear suggestions if input is empty
+                                return;
+                            }
+
+                            try {
+                                const response = await fetch('/facilities');
+                                const facilitiesData = await response.json();
+                                const facilityNames = facilitiesData.facilities.map(facility => facility.name.trim());
+
+                                const matchedFacilities = facilityNames.filter(name => name.toLowerCase().includes(userInput.toLowerCase()));
+
+                                // Display suggestions
+                                suggestionsList.innerHTML = '';
+                                matchedFacilities.forEach(facility => {
+                                    const listItem = document.createElement('li');
+                                    listItem.textContent = facility;
+                                    suggestionsList.appendChild(listItem);
+
+                                    // Add click event listener to list item
+                                    listItem.addEventListener('click', function () {
+                                        // Set the value of the Hospital name field
+                                        inputField.value = facility;
+                                        // Clear suggestions
+                                        suggestionsList.innerHTML = '';
+                                    });
+                                });
+                            } catch (error) {
+                                console.error('Error fetching facilities:', error);
+                            }
+                        });
+
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            background-color: #424242;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .top_bar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: #424242;
+            align-items: center;
+            padding: 10px 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            max-height: 50px;
+            max-width: 50px;
+        }
+
+        .menu_icon {
+            display: none;
+        }
+
+        .profile {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: beige;
+            margin: 0 1px;
+            cursor: pointer;
+            background-position: center;
+            background-size: cover;
+        }
+
+        input,
+        textarea {
+            border: none;
+            width: 290px;
+            padding: 8px;
+            outline: none;
+            border-radius: 8px;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        input:hover,
+        textarea:hover {
+            background-color: #f0f0f0;
+        }
+
+        .menu-items {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-items li {
+            margin-right: 20px;
+        }
+
+        .menu-items li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-items li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .card {
+            background-color: #575656;
+            margin: 8px;
+            color: #fff;
+            padding: .5em;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #fff;
+            padding: .5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        dialog {
+            border: none;
+            background-color: #212121;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .in-div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .submit {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-items {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #424242;
+                padding: 10px 0;
+                text-align: center;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+
+            .menu-items.show {
+                display: flex;
+                flex-direction: column;
+                margin-top: 35px;
+            }
+
+            .menu-items li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .logo {
+                display: none;
+            }
+
+            .top_bar {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .profile {
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+                background-color: beige;
+                margin: .1em;
+            }
+
+            .menu_icon {
+                display: block;
+            }
+
+            .menu-items {
+                display: none;
+                padding: 1em;
+                text-align: left;
+            }
+
+            .top_bar ul.show {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 37px;
+                left: 0;
+                background-color: #424242;
+                width: 100%;
+                z-index: 1000;
+                text-align: left;
+            }
+
+            .menu-items li a {
+                text-decoration: none;
+                color: #fff;
+                padding: 1.5em;
+            }
+
+            .menu-items li {
+                display: block;
+                text-align: left;
+                margin-left: -40px;
+                padding: .8em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top_bar">
+        <img src="/res/Picture4.png" alt="logo" class="logo">
+        <img src="/res/menu_icon.png" alt="menu_icon" class="menu_icon" id="menu_icon">
+        <ul class="menu-items" id="menu-items">
+            <li><a href="/home" title="Home page">Home</a></li>
+            <li><a href="/profile" title="Profile">Profile</a></li>
+            <li><a href="/messages" title="Send us a messaage">Contact Us</a></li>
+        </ul>
+        <div class="profile" id="profile" style="background-image: url('/uploads/<%=  user.profile_pic %>');">
+        </div>
+    </div>
+    <div id="card-container">
+        <% if (slots.length===0) { %>
+            <p>No slots available</p>
+            <% } else { %>
+                <% slots.forEach((slot, index)=> { %>
+                    <div class="card" id="card-<%= index %>">
+                        <h3>
+                            Doctor: <%= slot.doctor_name %>
+                        </h3>
+                        <p>Date: <%= slot.date %> at <%= slot.time %>
+                        </p>
+                        <p>Status: <%= slot.status %>
+                        </p>
+                        <button class="book" data-slot-id="<%= slot.id %>" data-slot-status="<%= slot.status %>">Book spot</button>
+                    </div>
+                    <% }); %>
+                        <% } %>
+    </div>
+    <dialog id="dialog">
+        <div class="in-div">
+            <input type="hidden" name="slot-id" id="slot-id">
+            <input type="tel" name="phone" id="phone" placeholder="0711223344">
+            <textarea name="problem" id="problem" cols="30" rows="10"
+                placeholder="Briefly describe your issue here..."></textarea>
+            <button class="submit" id="submit">Submit</button>
+            <button id="close" class="close">Close</button>
+        </div>
+    </dialog>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const menuIcon = document.getElementById('menu_icon');
+            const menuItems = document.getElementById('menu-items');
+            const profile = document.getElementById('profile');
+            const closeDialog = document.getElementById('close');
+            const dialog = document.getElementById('dialog');
+            const slotID = document.getElementById('slot-id');
+            const submit = document.getElementById('submit');
+
+            closeDialog.addEventListener('click', async (e) => {
+                e.preventDefault();
+                dialog.close();
+            })
+
+            profile.addEventListener('click', async (e) => {
+                window.location.href = '/profile';
+            })
+
+            menuIcon.addEventListener('click', function () {
+                menuItems.classList.toggle('show');
+            });
+
+            var bookButtons = document.querySelectorAll('.book');
+
+            bookButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var slotId = this.getAttribute('data-slot-id');
+                    var slotStatus = this.getAttribute('data-slot-status')
+                    slotID.value = slotId;
+                    
+                    if (slotStatus === "Booked") {
+                        alert("Slot already taken");
+                        dialog.close();
+                    } else if(slotStatus === "Not booked" || slotStatus === "") {
+                        dialog.showModal();
+                    }
+                });
+            });
+
+            submit.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const id = document.getElementById('slot-id').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const problem = document.getElementById('problem').value.trim();
+
+                if (!id || !phone || !problem) {
+                    alert("All fields are required.");
+                    return;
+                }
+
+                let userData = {
+                    id,
+                    phone,
+                    problem
+                }
+                try {
+                    // Send registration data to server
+                    const response = await fetch('/book', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(userData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert("Booking successful!");
+                        // Redirect to login page or perform other actions after successful registration
+                        window.location.href = "/home";
+                    } else {
+                        alert("Registration failed. Please try again.");
+                    }
+                } catch (error) {
+                    console.error("Error during registration:", error);
+                    alert("An error occurred. Please try again later.");
+                }
+
+            })
+        });
+    </script>
+</body>
+
+</html>
